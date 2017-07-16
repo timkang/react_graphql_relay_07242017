@@ -1,4 +1,4 @@
-# Welcome to Introduction to React Class
+# Welcome to Introduction to GraphQL/Relay Class
 
 ## Instructor
 
@@ -8,23 +8,26 @@ Eric Greene - [http://t4d.io](http://t4d.io) - [LinkedIn](https://www.linkedin.c
 
 Class:
 
-- Monday - Friday, Noon to 4:30pm EDT
-- Thursday: Noon to 1:45pm, 3:15pm to 4:30pm EDT
+- Monday - Wednesday, 9am to 5pm PDT (probably end at 4:40pm with questions until 5pm)
 
 Breaks:
 
-- First: 1:25pm to 1:35pm
-- Second: 3:00pm to 3:10pm
+- Morning: 10:25am - 10:35am
+- Lunch: Noon to 1pm
+- Afternoon #1: 2:15pm - 2:25pm
+- Afternoon #2: 3:40pm - 3:50pm
 
 ## Course Outline
 
-- See Course Outline
+Day 1 - GraphQL / Relay Server
+Day 2 - Relay Client
+Day 3 - Relay Client
 
 ## Links
 
 ### Instructor's Resources
 
-- [Accelebrate](http://www.accelebrate.com/)
+- [DevelopIntelligence](http://www.developintelligence.com/)
 - [Eric's Blog](http://t4d.io/)
 - [WintellectNOW](https://www.wintellectnow.com/Home/Instructor?instructorId=EricGreene) - Special Offer Code: GREENE-2016
 - [Microsoft Virtual Academy](https://mva.microsoft.com/search/SearchResults.aspx#!q=Eric%20Greene&lang=1033)
