@@ -15,13 +15,6 @@ export class HomePage extends React.Component {
           query homePageQuery {
             viewer {
               id
-              widgets(first: 100) {
-                edges {
-                  node {
-                    id
-                  }
-                }
-              }
               ...widgetsTable_viewer
             }
           }
@@ -34,7 +27,6 @@ export class HomePage extends React.Component {
               <button type="button" onClick={() => retry()}>Retry</button>
             </div>;
           } else if (props) {
-            console.log('home-page', props.viewer.widgets);
             return <div>
               <WidgetsTableContainer viewer={props.viewer} />
             </div>;
