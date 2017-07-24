@@ -19,9 +19,9 @@ Breaks:
 
 ## Course Outline
 
-Day 1 - GraphQL / Relay Server
-Day 2 - Relay Client
-Day 3 - Relay Client
+Day 1 - Intro to GraphQL, Relay Overview, Relay Queries
+Day 2 - Relay Queries, Relay Mutations
+Day 3 - Relay Mutations
 
 ## Links
 
@@ -111,7 +111,8 @@ From a terminal, in the root project folder (where the **package.json** file exi
 - **npm run server** - runs babel, outputs the generated server files, and executes them with nodemon
 - **npm run client** - runs the webpack development web server
 - **npm run rest** - runs the JSON server to provide REST services
-- **npm run relay** - runs the Relay Compiler
+- **npm run relay** - runs the Relay Compiler in Watch Mode
+- **npm run relay:once** - runs the Relay Compiler Once
 
 ### Useful Resources
 
