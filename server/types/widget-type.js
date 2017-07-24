@@ -19,7 +19,7 @@ export const widgetType = new GraphQLObjectType({
     description: { type: GraphQLString },
     color: { type: GraphQLString },
     size: { type: GraphQLString },
-    qty: { type: GraphQLInt },
+    quantity: { type: GraphQLInt },
   }),
 
   interfaces: () => [nodeInterface]
