@@ -19,9 +19,9 @@ Breaks:
 
 ## Course Outline
 
-Day 1 - Intro to GraphQL, Relay Overview, Relay Queries
-Day 2 - Relay Queries, Relay Mutations
-Day 3 - Relay Mutations
+- Day 1 - Intro to GraphQL, Relay Overview, Relay Queries
+- Day 2 - Relay Queries, Relay Mutations
+- Day 3 - Relay Mutations
 
 ## Links
 
