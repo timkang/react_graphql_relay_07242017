@@ -20,7 +20,7 @@ export const viewerType = new GraphQLObjectType({
     widgets: {
       type: widgetsConnectionType,
       args: connectionArgs,
-      resolve: (_1, args, { baseUrl }) => {
+      resolve: (_, args, { baseUrl }) => {
         const widgetData = new WidgetData(baseUrl);
 
         return widgetData.all().then(widgets => {
