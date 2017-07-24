@@ -3,6 +3,8 @@ import { QueryRenderer, graphql } from 'react-relay';
 
 import { environment } from '../environment';
 
+import { WidgetsTableContainer } from './widgets-table';
+
 export class HomePage extends React.Component {
 
   render() {
@@ -13,18 +15,14 @@ export class HomePage extends React.Component {
           query homePageQuery {
             viewer {
               id
-              widgets {
+              widgets(first: 100) {
                 edges {
                   node {
                     id
-                    name
-                    description
-                    color
-                    size
-                    quantity
                   }
                 }
               }
+              ...widgetsTable_viewer
             }
           }
         `}
@@ -36,30 +34,9 @@ export class HomePage extends React.Component {
               <button type="button" onClick={() => retry()}>Retry</button>
             </div>;
           } else if (props) {
-            console.log(props.viewer.widgets.edges.length);
-            //return React.createElement('div', null, 'some content');
+            console.log('home-page', props.viewer.widgets);
             return <div>
-              <table>
-                <thead>
-                  <tr>
-                    <th>Name</th>
-                    <th>Description</th>
-                    <th>Color</th>
-                    <th>Size</th>
-                    <th>Quantity</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {props.viewer.widgets.edges.map(edge =>
-                    <tr key={edge.node.id}>
-                      <td>{edge.node.name}</td>
-                      <td>{edge.node.description}</td>
-                      <td>{edge.node.color}</td>
-                      <td>{edge.node.size}</td>
-                      <td>{edge.node.quantity}</td>
-                    </tr>)}
-                </tbody>
-              </table>
+              <WidgetsTableContainer viewer={props.viewer} />
             </div>;
           } else {
             return <div>Loading Home Page...</div>;
