@@ -1,10 +1,15 @@
-import { GraphQLObjectType, GraphQLString } from 'graphql';
-import { globalIdField } from 'graphql-relay';
+import { GraphQLObjectType } from 'graphql';
+import {
+  globalIdField, connectionArgs, connectionFromArray
+} from 'graphql-relay';
 
 import { nodeInterface } from '../utils/node-definitions';
 import { registerType } from '../utils/resolve-type';
 
-import { Viewer } from '../models/graphql-models';
+import { Viewer, Widget } from '../models/graphql-models';
+import { WidgetData } from '../models/widget-data';
+
+import { widgetsConnectionType } from '../connections/widgets';
 
 export const viewerType = new GraphQLObjectType({
 
@@ -12,11 +17,26 @@ export const viewerType = new GraphQLObjectType({
 
   fields: () => ({
     id: globalIdField('Viewer'),
-    message: { type: GraphQLString }, 
+    widgets: {
+      type: widgetsConnectionType,
+      args: connectionArgs,
+      resolve: (_1, args, { baseUrl }) => {
+        const widgetData = new WidgetData(baseUrl);
+
+        return widgetData.all().then(widgets => {
+
+          const widgetModels = widgets.map(w =>
+            Object.assign(new Widget(), w));
+
+          return connectionFromArray(widgetModels, args);
+        });
+      },
+    }
   }),
 
   interfaces: () => [nodeInterface]
 
 });
 
-registerType(Viewer, viewerType, id => Object.assign(new Viewer(), { id, message: 'Hello World', }));
+registerType(Viewer, viewerType, id =>
+  Object.assign(new Viewer(), { id, message: 'Hello World!', }));

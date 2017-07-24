@@ -12,7 +12,8 @@ export const query = new GraphQLObjectType({
     node: nodeField,
     viewer: {
       type: viewerType,
-      resolve: () => Object.assign(new Viewer(), { id: 1, message: 'Hello World', }),
+      resolve: () =>
+        Object.assign(new Viewer(), { id: 1, message: 'Hello World!', }),
     }
   }),
 
