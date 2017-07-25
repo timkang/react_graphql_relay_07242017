@@ -49,22 +49,22 @@ export class WidgetForm extends React.Component {
       </div>
       <div>
         <label htmlFor="description-input">Description:</label>
-        <input type="text" description="description" id="description-input"
+        <input type="text" name="description" id="description-input"
           value={this.state.description} onChange={this.onChange} />
       </div>
       <div>
         <label htmlFor="color-input">Color:</label>
-        <input type="text" color="color" id="color-input"
+        <input type="text" name="color" id="color-input"
           value={this.state.color} onChange={this.onChange} />
       </div>
       <div>
         <label htmlFor="size-input">Size:</label>
-        <input type="text" size="size" id="size-input"
+        <input type="text" name="size" id="size-input"
           value={this.state.size} onChange={this.onChange} />
       </div>
       <div>
         <label htmlFor="quantity-input">Quantity:</label>
-        <input type="number" quantity="quantity" id="quantity-input"
+        <input type="number" name="quantity" id="quantity-input"
           value={this.state.quantity} onChange={this.onChange} />
       </div>
       <button type="button" onClick={this.saveWidget}>Add Widget</button>

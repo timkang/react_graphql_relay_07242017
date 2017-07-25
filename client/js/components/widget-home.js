@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { createFragmentContainer, graphql } from 'react-relay';
 
-// import { insertWidget } from '../mutations/insert-widget';
+import { insertWidget } from '../mutations/insert-widget';
 
 import { WidgetsTableContainer } from './widgets-table';
-import { WidgetFormContainer } from './widget-form';
+import { WidgetForm } from './widget-form';
 
 export class WidgetHome extends React.Component {
 
@@ -16,11 +16,13 @@ export class WidgetHome extends React.Component {
 
   saveWidget = widget => {
 
-    // insertWidget(
-    //   this.props.relay.environment,
-    //   widget,
-    //   this.props.viewer.id,
-    // );
+    console.log(this.props);
+
+    insertWidget(
+      this.props.relay.environment,
+      widget,
+      this.props.viewer.id,
+    );
 
   };
 
@@ -28,7 +30,7 @@ export class WidgetHome extends React.Component {
 
     return <div>
       <WidgetsTableContainer viewer={this.props.viewer} />
-      <WidgetFormContainer onSaveWidget={this.saveWidget} />
+      <WidgetForm onSaveWidget={this.saveWidget} />
     </div>;
 
   }
