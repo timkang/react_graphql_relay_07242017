@@ -3,7 +3,7 @@ import { QueryRenderer, graphql } from 'react-relay';
 
 import { environment } from '../environment';
 
-import { WidgetsTableContainer } from './widgets-table';
+import { WidgetHomeContainer } from './widget-home';
 
 export class HomePage extends React.Component {
 
@@ -15,7 +15,7 @@ export class HomePage extends React.Component {
           query homePageQuery {
             viewer {
               id
-              ...widgetsTable_viewer
+              ...widgetHome_viewer
             }
           }
         `}
@@ -29,7 +29,7 @@ export class HomePage extends React.Component {
             </div>;
           } else if (props) {
             return <div>              
-              <WidgetsTableContainer viewer={props.viewer} />
+              <WidgetHomeContainer viewer={props.viewer} />
             </div>;
           } else {
             return <div>Loading Home Page...</div>;

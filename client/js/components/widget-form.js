@@ -3,6 +3,10 @@ import PropTypes from 'prop-types';
 
 export class WidgetForm extends React.Component {
 
+  static propTypes = {
+    onSaveWidget: PropTypes.func,
+  };
+
   constructor(props) {
     super(props);
 
@@ -24,7 +28,15 @@ export class WidgetForm extends React.Component {
   };
 
   saveWidget = () => {
+    this.props.onSaveWidget({ ...this.state });
 
+    this.setState({
+      name: '',
+      description: '',
+      color: '',
+      size: '',
+      quantity: 0,
+    });
   };
 
   render() {

@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 3a3236e436278531b123be19309732b1
+ * @relayHash 3064e257a06c66b7615521cb53062f5b
  */
 
 /* eslint-disable */
@@ -21,8 +21,13 @@ export type homePageQueryResponse = {|
 query homePageQuery {
   viewer {
     id
-    ...widgetsTable_viewer
+    ...widgetHome_viewer
   }
+}
+
+fragment widgetHome_viewer on Viewer {
+  id
+  ...widgetsTable_viewer
 }
 
 fragment widgetsTable_viewer on Viewer {
@@ -78,7 +83,7 @@ const batch /*: ConcreteBatch*/ = {
           },
           {
             "kind": "FragmentSpread",
-            "name": "widgetsTable_viewer",
+            "name": "widgetHome_viewer",
             "args": null
           }
         ],
@@ -268,7 +273,7 @@ const batch /*: ConcreteBatch*/ = {
       }
     ]
   },
-  "text": "query homePageQuery {\n  viewer {\n    id\n    ...widgetsTable_viewer\n  }\n}\n\nfragment widgetsTable_viewer on Viewer {\n  widgets(first: 100) {\n    edges {\n      node {\n        id\n        ...widgetsViewRow_widget\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n      hasPreviousPage\n      startCursor\n    }\n  }\n}\n\nfragment widgetsViewRow_widget on Widget {\n  id\n  name\n  description\n  color\n  size\n  quantity\n}\n"
+  "text": "query homePageQuery {\n  viewer {\n    id\n    ...widgetHome_viewer\n  }\n}\n\nfragment widgetHome_viewer on Viewer {\n  id\n  ...widgetsTable_viewer\n}\n\nfragment widgetsTable_viewer on Viewer {\n  widgets(first: 100) {\n    edges {\n      node {\n        id\n        ...widgetsViewRow_widget\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n      hasPreviousPage\n      startCursor\n    }\n  }\n}\n\nfragment widgetsViewRow_widget on Widget {\n  id\n  name\n  description\n  color\n  size\n  quantity\n}\n"
 };
 
 module.exports = batch;
