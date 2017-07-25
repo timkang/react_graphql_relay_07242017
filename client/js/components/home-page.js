@@ -22,12 +22,13 @@ export class HomePage extends React.Component {
         variables={{}}
         render={({ error, props, retry }) => {
           if (error) {
+            console.log(error);
             return <div>
               <h1>Error Loading</h1>
               <button type="button" onClick={() => retry()}>Retry</button>
             </div>;
           } else if (props) {
-            return <div>
+            return <div>              
               <WidgetsTableContainer viewer={props.viewer} />
             </div>;
           } else {

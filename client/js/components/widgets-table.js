@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { createFragmentContainer, graphql } from 'react-relay';
 
+import { WidgetsViewRowContainer } from './widgets-view-row';
+
 export class WidgetsTable extends React.Component {
 
   static propTypes = {
@@ -9,7 +11,6 @@ export class WidgetsTable extends React.Component {
   };
 
   render() {
-    console.log('widgets-table', this.props.viewer.widgets);
     return <table>
       <thead>
         <tr>
@@ -22,13 +23,7 @@ export class WidgetsTable extends React.Component {
       </thead>
       <tbody>
         {this.props.viewer.widgets.edges.map(edge =>
-          <tr key={edge.node.id}>
-            <td>{edge.node.name}</td>
-            <td>{edge.node.description}</td>
-            <td>{edge.node.color}</td>
-            <td>{edge.node.size}</td>
-            <td>{edge.node.quantity}</td>
-          </tr>)}
+          <WidgetsViewRowContainer key={edge.node.id} widget={edge.node} />)}
       </tbody>
     </table>;
   }
@@ -41,11 +36,7 @@ export const WidgetsTableContainer = createFragmentContainer(WidgetsTable, graph
       edges {
         node {
           id
-          name
-          description
-          color
-          size
-          quantity
+          ...widgetsViewRow_widget
         }
       }
     }

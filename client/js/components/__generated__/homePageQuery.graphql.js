@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash ae40e795997b9e1d2406cfb1c723641d
+ * @relayHash 3a3236e436278531b123be19309732b1
  */
 
 /* eslint-disable */
@@ -12,13 +12,6 @@ import type {ConcreteBatch} from 'relay-runtime';
 export type homePageQueryResponse = {|
   +viewer: ?{|
     +id: string;
-    +widgets: ?{|
-      +edges: ?$ReadOnlyArray<?{|
-        +node: ?{|
-          +id: string;
-        |};
-      |}>;
-    |};
   |};
 |};
 */
@@ -28,13 +21,6 @@ export type homePageQueryResponse = {|
 query homePageQuery {
   viewer {
     id
-    widgets(first: 100) {
-      edges {
-        node {
-          id
-        }
-      }
-    }
     ...widgetsTable_viewer
   }
 }
@@ -44,11 +30,7 @@ fragment widgetsTable_viewer on Viewer {
     edges {
       node {
         id
-        name
-        description
-        color
-        size
-        quantity
+        ...widgetsViewRow_widget
         __typename
       }
       cursor
@@ -60,6 +42,15 @@ fragment widgetsTable_viewer on Viewer {
       startCursor
     }
   }
+}
+
+fragment widgetsViewRow_widget on Widget {
+  id
+  name
+  description
+  color
+  size
+  quantity
 }
 */
 
@@ -84,53 +75,6 @@ const batch /*: ConcreteBatch*/ = {
             "args": null,
             "name": "id",
             "storageKey": null
-          },
-          {
-            "kind": "LinkedField",
-            "alias": null,
-            "args": [
-              {
-                "kind": "Literal",
-                "name": "first",
-                "value": 100,
-                "type": "Int"
-              }
-            ],
-            "concreteType": "WidgetsConnection",
-            "name": "widgets",
-            "plural": false,
-            "selections": [
-              {
-                "kind": "LinkedField",
-                "alias": null,
-                "args": null,
-                "concreteType": "WidgetsEdge",
-                "name": "edges",
-                "plural": true,
-                "selections": [
-                  {
-                    "kind": "LinkedField",
-                    "alias": null,
-                    "args": null,
-                    "concreteType": "Widget",
-                    "name": "node",
-                    "plural": false,
-                    "selections": [
-                      {
-                        "kind": "ScalarField",
-                        "alias": null,
-                        "args": null,
-                        "name": "id",
-                        "storageKey": null
-                      }
-                    ],
-                    "storageKey": null
-                  }
-                ],
-                "storageKey": null
-              }
-            ],
-            "storageKey": "widgets{\"first\":100}"
           },
           {
             "kind": "FragmentSpread",
@@ -324,7 +268,7 @@ const batch /*: ConcreteBatch*/ = {
       }
     ]
   },
-  "text": "query homePageQuery {\n  viewer {\n    id\n    widgets(first: 100) {\n      edges {\n        node {\n          id\n        }\n      }\n    }\n    ...widgetsTable_viewer\n  }\n}\n\nfragment widgetsTable_viewer on Viewer {\n  widgets(first: 100) {\n    edges {\n      node {\n        id\n        name\n        description\n        color\n        size\n        quantity\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n      hasPreviousPage\n      startCursor\n    }\n  }\n}\n"
+  "text": "query homePageQuery {\n  viewer {\n    id\n    ...widgetsTable_viewer\n  }\n}\n\nfragment widgetsTable_viewer on Viewer {\n  widgets(first: 100) {\n    edges {\n      node {\n        id\n        ...widgetsViewRow_widget\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n      hasPreviousPage\n      startCursor\n    }\n  }\n}\n\nfragment widgetsViewRow_widget on Widget {\n  id\n  name\n  description\n  color\n  size\n  quantity\n}\n"
 };
 
 module.exports = batch;

@@ -9,3 +9,11 @@ export const {
   name: 'Widgets',
   nodeType: widgetType,
 });
+
+// const connObj = connectionDefinitions({
+//   name: 'Widgets',
+//   nodeType: widgetType,
+// });
+
+// export const widgetsConnectionType = connObj.connectionType;
+// export const widgetsEdgeType = connObj.edgeType;
