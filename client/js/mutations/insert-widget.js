@@ -1,5 +1,5 @@
 import { commitMutation, graphql } from 'react-relay';
-import { ConnectionHandler, RecordSourceInspector, } from 'relay-runtime';
+import { ConnectionHandler } from 'relay-runtime';
 
 const mutation = graphql`
   mutation insertWidgetMutation($input: InsertWidgetInput!) {

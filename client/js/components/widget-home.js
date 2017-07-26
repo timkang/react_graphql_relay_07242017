@@ -20,9 +20,7 @@ export class WidgetHome extends React.Component {
       this.props.relay.environment,
       widget,
       this.props.viewer.id,
-    )
-      .then(res => console.log(res))
-      .catch(err => console.log(err));
+    ).then(res => console.log(res)).catch(err => console.log(err));
   };
 
   reactDeleteWidget = widgetId => {

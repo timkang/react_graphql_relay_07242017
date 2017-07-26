@@ -37,8 +37,8 @@ export const insertWidgetMutationType = mutationWithClientMutationId({
   mutateAndGetPayload: ({ widget }, { baseUrl }) => {
     const widgetData = new WidgetData(baseUrl);
     // result of this code, will be the input to resolve functions down below
-    return widgetData.insert(widget).then(widget => Object.assign(new Widget(), widget));
-    // return Promise.reject('the world ended');
+    // return widgetData.insert(widget).then(widget => Object.assign(new Widget(), widget));
+    return Promise.reject('the world ended');
   },
 
   outputFields: () => {
