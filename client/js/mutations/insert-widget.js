@@ -31,10 +31,12 @@ const sharedUpdater = (source, viewerId, widgetEdge) => {
 
 let clientMutationId = 0;
 
+// function which is being exported, which is the application is going to call
 export const insertWidget = (environment, widget, viewerId) => {
 
   return new Promise((resolve, reject) => {
 
+    // function provided by relay to make the call to the graphql server
     commitMutation(
       environment,
       {
@@ -46,11 +48,24 @@ export const insertWidget = (environment, widget, viewerId) => {
           },
         },
         updater: source => {
+
+          // console.log(source);
+          // const root = source.getRoot();
+          // const errors = root.getLinkedRecord('errors');
+          // //const message = errors.getValue('message');
+          // console.log(errors.get('message'));
+          // if (errors) {
+          //   console.error(errors.getLinkedRecord('message'));
+          //   return;
+          // }
+
           const payload = source.getRootField('insertWidget');
           const widgetEdge = payload.getLinkedRecord('widgetEdge');
           sharedUpdater(source, viewerId, widgetEdge);
         },
         optimisticUpdater: source => {
+
+          console.log(source);
 
           const nodeId = 'client:newWidget:' + clientMutationId++;
           const node = source.create(nodeId, 'Widget');

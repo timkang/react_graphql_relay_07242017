@@ -8,6 +8,7 @@ export class WidgetsTable extends React.Component {
 
   static propTypes = {
     viewer: PropTypes.object,
+    onDeleteWidget: PropTypes.func,
   };
 
   render() {
@@ -19,11 +20,13 @@ export class WidgetsTable extends React.Component {
           <th>Color</th>
           <th>Size</th>
           <th>Quantity</th>
+          <th>Action</th>
         </tr>
       </thead>
       <tbody>
         {this.props.viewer.widgets.edges.map(edge =>
-          <WidgetsViewRowContainer key={edge.node.id} widget={edge.node} />)}
+          <WidgetsViewRowContainer key={edge.node.id} widget={edge.node}
+            onDeleteWidget={this.props.onDeleteWidget} />)}
       </tbody>
     </table>;
   }
