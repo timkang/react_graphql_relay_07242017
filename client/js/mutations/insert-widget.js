@@ -1,5 +1,5 @@
 import { commitMutation, graphql } from 'react-relay';
-import { ConnectionHandler } from 'relay-runtime';
+import { ConnectionHandler, RecordSourceInspector, } from 'relay-runtime';
 
 const mutation = graphql`
   mutation insertWidgetMutation($input: InsertWidgetInput!) {
@@ -48,18 +48,10 @@ export const insertWidget = (environment, widget, viewerId) => {
           },
         },
         updater: source => {
-
-          // console.log(source);
-          // const root = source.getRoot();
-          // const errors = root.getLinkedRecord('errors');
-          // //const message = errors.getValue('message');
-          // console.log(errors.get('message'));
-          // if (errors) {
-          //   console.error(errors.getLinkedRecord('message'));
-          //   return;
-          // }
-
           const payload = source.getRootField('insertWidget');
+          if (!payload) {
+            return;
+          }
           const widgetEdge = payload.getLinkedRecord('widgetEdge');
           sharedUpdater(source, viewerId, widgetEdge);
         },
@@ -82,7 +74,12 @@ export const insertWidget = (environment, widget, viewerId) => {
 
           sharedUpdater(source, viewerId, widgetEdge);
         },
-        onCompleted: res => resolve(res),
+        onCompleted: (result, errors) => {
+          if (errors) {
+            reject(errors);
+          }
+          resolve(result);
+        },
         onError: err => reject(err),
       });
 
